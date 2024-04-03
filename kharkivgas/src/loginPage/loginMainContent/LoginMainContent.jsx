@@ -1,6 +1,7 @@
 import React from "react";
 import "./loginmaincontent.css";
 import logo from "../loginImages/logo.png";
+import { Link } from "react-router-dom";
 import banner from "../loginImages/login-image.png";
 
 export default function LoginMainContent() {
@@ -9,14 +10,19 @@ export default function LoginMainContent() {
       <div className="left-section">
         <div className="header">
           <div className="logo-header">
-            <img src={logo} alt="Kharkiv Gas Logo" className="logo" />
-            <span>Kharkiv gas</span>
+            <Link to="/">
+              <img src={logo} alt="Kharkiv Gas Logo" className="logo" />
+            </Link>
+				<span>Kharkiv gas</span>
           </div>
           <div className="signup-nav">
             <span>Немає акаунту?</span>
-            <a href="#!" className="register-button">
+				<Link to="/registration">
+				<a href="#!" className="register-button">
               Зареєструватися
             </a>
+            </Link>
+            
           </div>
         </div>
 

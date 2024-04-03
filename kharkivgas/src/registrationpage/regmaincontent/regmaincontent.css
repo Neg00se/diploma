@@ -1,0 +1,163 @@
+/* LoginPAGE */
+
+.login-container {
+	display: flex;
+	height: 100vh;
+ }
+ 
+ .left-section {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+ }
+ 
+ .logo-header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+ }
+ .logo-header img {
+	width: 80px;
+	height: 60px;
+ }
+ .logo-header span {
+	text-transform: uppercase;
+	font-weight: 800;
+ }
+ 
+ .header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	box-sizing: border-box;
+ }
+ 
+ .signup-nav {
+	display: flex;
+	column-gap: 10px;
+	align-items: center;
+ }
+ .register-button {
+	color: #6eb9d7;
+	border: solid transparent 2px;
+	border-radius: 7px;
+	background-color: none;
+	padding: 8px 16px;
+	cursor: pointer;
+	letter-spacing: 0.2px;
+	transition: 0.7s;
+ }
+ 
+ .register-button:hover {
+	border: solid #6eb9d7 2px;
+	color: #fff;
+	background-color: #6eb9d7;
+ }
+ 
+ .reg-title {
+	font-size: 24px;
+	margin-bottom: 40px;
+	text-transform: uppercase;
+ }
+ 
+ .reg-form {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 490px;
+
+ }
+ 
+ .reg-input-hint {
+	align-self: start;
+	margin-bottom: 15px;
+ }
+ 
+ input[type="text"] {
+	margin-bottom: 30px;
+	padding: 20px 5px;
+	width: 490px;
+	outline: none;
+	font-size: 16px;
+	box-sizing: border-box;
+	background-color: rgba(225, 231, 234, 0.3);
+	border: 1px solid #b5bfc9;
+ }
+ 
+ input[type="text"]:hover {
+	background-color: #fff;
+ }
+ input[type="text"]::placeholder{
+	font-size: 16px;
+	font-weight: 500;
+ }
+ input[type="password"] {
+	margin-bottom: 15px;
+ }
+
+ .reg-hint-desc {
+	position: relative; 
+	padding-left: 20px; 
+ }
+ 
+ .reg-hint-desc::before {
+	content: ""; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 3px;
+	height: 100%;
+	background-color: #fbbc07; 
+ }
+ 
+ 
+ .checkbox-container {
+	max-width: 500px;
+	display: flex;
+	align-self: start;
+	margin-bottom: 10px;
+ }
+ input[type="checkbox"]{
+	margin-top: 25px;
+ }
+ 
+ .checkbox-container label {
+	margin-top: 25px;
+	margin-left: 10px;
+ }
+ 
+ .reg-button {
+	margin-top: 25px;
+
+	background-color: black;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+ }
+ 
+ .right-section {
+	flex: 1;
+ }
+ 
+ .banner {
+	width: 100%;
+	max-width: 100%;
+ }
+ 
+
+ .error-message {
+	position: fixed;
+	bottom: 10px; 
+	right: 10px; 
+	background-color: #ffcccc; 
+	color: #ff0000; 
+	padding: 15px; 
+	border-radius: 5px; 
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+	z-index: 9999; 
+ }
+ 

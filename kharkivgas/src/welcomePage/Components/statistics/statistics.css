@@ -1,0 +1,56 @@
+.statistic-desc {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: left;
+}
+.statistic-numbers {
+  font-weight: 800;
+  font-size: 40px;
+}
+.statistics-row {
+	margin-bottom: 60px;
+}
+.statistics-content {
+  display: flex;
+  justify-content: space-between;
+
+  max-width: 1000px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 60px 0px;
+  border-bottom: 1px solid black;
+  
+}
+
+.statistic-desc::before {
+  content: "";
+  display: inline-block;
+  width: 10px; /* Ширина элипса */
+  height: 5px; /* Высота элипса */
+  background-color: #6eb9d7;
+  margin-right: 10px;
+  border-radius: 80%; /* Задаем радиус, чтобы сделать круглый элипс */
+  vertical-align: middle;
+}
+
+@media (min-width: 568px) {
+  .statistic-desc {
+    padding-right: 20px;
+    font-size: 20px;
+  }
+  .statistic-numbers {
+    padding-left: 20px;
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 568px) {
+	.statistic-desc {
+		padding-right: 20px;
+		font-size: 18px;
+	 }
+	 .statistic-numbers {
+		padding-left: 20px;
+		font-size: 33px;
+	 }
+}
