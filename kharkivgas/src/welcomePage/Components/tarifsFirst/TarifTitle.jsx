@@ -7,7 +7,7 @@ export default function TarifTitle() {
 		<div className="tarifs-title__container" id='tarifs'>
       <div className="tarifs-title__leftpart">
         <h2>Ми хочемо, щоб вам було зручно</h2>
-        <a href="#!" className=" yellow main-button">Більше про тарифи</a>
+        <a href="#tarifs" className=" yellow main-button">Більше про тарифи</a>
 				</div>
       <div className="tarifs-title__rightpart">
         <p>

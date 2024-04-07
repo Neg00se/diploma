@@ -30,7 +30,7 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a href="#" onClick={closeMenu}>
+              <a href="#news" onClick={closeMenu}>
                 Новини
               </a>
             </li>

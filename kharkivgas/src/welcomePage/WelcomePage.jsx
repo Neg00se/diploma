@@ -6,6 +6,7 @@ import Statistics from "./Components/statistics/Statistics";
 import TarifTitle from "./Components/tarifsFirst/TarifTitle";
 import Tarifsmain from "./Components/tarifsmain/Tarifsmain";
 import Footer from "./Components/footer/Footer";
+import News from "./Components/news/News";
 
 export default function WelcomePage() {
   return (
@@ -15,6 +16,7 @@ export default function WelcomePage() {
       <Statistics />
       <TarifTitle />
       <Tarifsmain />
+		<News/>
       <Footer />
     </>
   );

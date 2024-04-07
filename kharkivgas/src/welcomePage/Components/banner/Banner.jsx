@@ -11,7 +11,7 @@ export default function Banner() {
           <div className="main-banner__row">
 				<div className="main-banner__content">
 <h2>Незабаром передавати показники лічильника стане ще легше!</h2>
-<a href="#!" className=" yellow main-button">Перейти до новин</a>
+<a href="#news" className=" yellow main-button">Перейти до новин</a>
 				</div>
 
 				<div className="main-banner__img">
