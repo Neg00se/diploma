@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAccessLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ public class GasDbContext : DbContext
 
 	}
 
+	public DbSet<Rate> Rates { get; set; }
+    public DbSet<CommunalPayment> CommunalPayments { get; set; }
 
 }
