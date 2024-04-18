@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities;
 
-public class Rate
+public class Rate 
 {
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+    public decimal Price { get; set; }
 }
