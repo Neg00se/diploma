@@ -1,5 +1,6 @@
 using DataAccessLayer;
 using DataAccessLayer.IdentityItems;
+using GasApi.DataSeed;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("identity")));
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddIdentityApiEndpoints<User>().AddRoles<IdentityRole>()
+builder.Services.AddIdentityApiEndpoints<User>(options =>
+options.User.RequireUniqueEmail = true).AddRoles<IdentityRole>()
 	.AddEntityFrameworkStores<AppIdentityDbContext>();
 
 var app = builder.Build();
@@ -31,6 +33,9 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+
+await SeedRoles.EnsurePopulated(app);
+await SeedAdminUser.EnsurePopulated(app);
 
 app.MapIdentityApi<User>();
 
