@@ -17,7 +17,7 @@ public class CommunalPayment
 
 	public string UserCode { get; set; } = null!;
 
-	public string? UserId { get; set; }
+	public string UserId { get; set; }
 
 	public decimal GasUsed { get; set; }
 
@@ -29,5 +29,5 @@ public class CommunalPayment
 
 	public Rate Rate { get; set; } = null!;
 
-
+    public int RateId { get; set; }
 }
