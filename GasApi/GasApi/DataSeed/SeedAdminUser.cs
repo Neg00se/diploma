@@ -15,6 +15,7 @@ public static class SeedAdminUser
 
 		
 		var user =await userManager.FindByNameAsync(AdminUser);
+		//await userManager.AddToRoleAsync(user, "Admin");
 		if (user is null)
 		{
 			user = new User()
@@ -24,10 +25,17 @@ public static class SeedAdminUser
 				FirstName = "John",
 				LastName = "Doe",
 				PersonalCode = "123456789",
+				RateId = 0,
 
 			};
 
-			await userManager.CreateAsync(user, AdminPassword);
+			var result = await userManager.CreateAsync(user, AdminPassword);
+			if (result.Succeeded)
+			{
+				user = await userManager.FindByNameAsync(AdminUser);
+				await userManager.AddToRoleAsync(user, "Admin");
+			}
+
 		}
 	}
 }
