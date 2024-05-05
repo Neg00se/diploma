@@ -4,6 +4,7 @@ using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(GasDbContext))]
-    partial class GasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240424151540_NotNullableUserId")]
+    partial class NotNullableUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,14 +60,11 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RateId");
-
-                    b.HasIndex("StartDate", "EndDate", "UserId")
-                        .IsUnique();
 
                     b.ToTable("CommunalPayments");
                 });
@@ -87,26 +87,6 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rates");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Економ",
-                            Price = 7.96m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Фіксований",
-                            Price = 8.96m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Преміум",
-                            Price = 9.96m
-                        });
                 });
 
             modelBuilder.Entity("DataAccessLayer.Entities.CommunalPayment", b =>
