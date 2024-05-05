@@ -6,8 +6,9 @@ namespace DataAccessLayer.Repositories
 	{
 		Task AddAsync(CommunalPayment cp);
 		Task DeleteByIdAsync(int id);
-		Task<List<CommunalPayment>> GetAllAsync();
+		Task<IEnumerable<CommunalPayment>> GetAllUserCommunalsAsync(string userId);
 		Task<CommunalPayment> GetByIdAsync(int id);
-		void Update(CommunalPayment cp);
+		Task<Rate> GetRateByIdAsync(int rateId);
+		void UpdateAll(IEnumerable<CommunalPayment> cp);
 	}
 }
