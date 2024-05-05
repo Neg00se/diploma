@@ -19,6 +19,8 @@ public class User : IdentityUser
 	[MinLength(9)]
 	public string PersonalCode { get; set; }
 
-	public string? Address { get; set; }
+    public int RateId { get; set; }
+
+    public string? Address { get; set; }
 
 }
