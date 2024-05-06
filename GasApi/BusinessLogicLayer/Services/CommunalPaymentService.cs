@@ -45,6 +45,12 @@ public class CommunalPaymentService : ICommunalPaymentService
 
 	public async Task AddAsync(UserIndicatorsModel model, User user)
 	{
+		if (model.StartDate.Year < DateTime.Now.Year)
+		{
+			throw new GasAppException("invalid year");
+		}
+
+
 		var payment = _mapper.Map<CommunalPayment>(model);
 
 		payment.RateId = user.RateId;
@@ -78,12 +84,12 @@ public class CommunalPaymentService : ICommunalPaymentService
 				up.Payed = up.ToPay;
 				up.IsPayed = true;
 			}
-			else if (residue != 0 )
+			else if (residue != 0)
 			{
 				up.Payed += residue;
 				residue = 0;
 			}
-			
+
 		}
 
 		_repo.UpdateAll(userPayments);

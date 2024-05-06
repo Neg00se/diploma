@@ -74,6 +74,7 @@ const AddCommunalModal = ({ show, handleClose }) => {
               <Form.Group as={Col}>
                 <Form.Label className="fs-5 ">Оберіть місяць</Form.Label>
                 <DatePicker
+                  minDate={dayjs()}
                   value={month}
                   className="col-12"
                   views={["month", "year"]}
