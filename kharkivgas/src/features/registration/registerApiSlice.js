@@ -8,6 +8,7 @@ export const registerApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...credentials },
       }),
+      invalidatesTags: ["Admin"],
     }),
   }),
 });
