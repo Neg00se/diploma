@@ -74,7 +74,7 @@
   margin-bottom: 7px;
 }
 
-input[type="text"],
+.inputField,
 input[type="password"] {
   margin-bottom: 30px;
   padding: 20px 5px;
@@ -86,11 +86,11 @@ input[type="password"] {
   border: 1px solid #b5bfc9;
 }
 
-input[type="text"]:hover,
+.inputField :hover,
 input[type="password"]:hover {
   background-color: #fff;
 }
-input[type="text"]::placeholder,
+.inputField::placeholder,
 input[type="password"]::placeholder {
   font-size: 16px;
   font-weight: 500;
@@ -236,4 +236,8 @@ input[type="password"] {
     object-fit: cover;
     height: 100vh;
   }
+}
+
+.spinner {
+  min-height: 100vh;
 }
