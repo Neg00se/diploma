@@ -27,7 +27,7 @@ export default function Tarifsmain() {
             <img src={home} alt="tarif" />
             <h3>Тарифний план «Фіксований»</h3>
             <p>
-              <span>Ціна за м3.</span> 7,96 грн
+              <span>Ціна за м3.</span> 8,96 грн
             </p>
             <ul className="tarif-card__list">
               <li>Ціна діє 12 місяців</li>
@@ -40,7 +40,7 @@ export default function Tarifsmain() {
             <img src={gas} alt="tarif" />
             <h3>Тарифний план «Преміум»</h3>
             <p>
-              <span>Ціна за м3.</span> 7,96 грн
+              <span>Ціна за м3.</span> 9,96 грн
             </p>
             <ul className="tarif-card__list">
               <li>Ціна діє 12 місяців</li>
