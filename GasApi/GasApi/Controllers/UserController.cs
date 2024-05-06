@@ -121,5 +121,25 @@ namespace GasApi.Controllers
 			}
 		}
 
+		[HttpPatch("changePhone")]
+		public async Task<IActionResult> ChangePhoneNumber(string phone)
+		{
+			var user = await _userManager.GetUserAsync(User);
+
+			try
+			{
+				if (!string.IsNullOrWhiteSpace(phone))
+				{
+					var token = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phone);
+					await _userManager.ChangePhoneNumberAsync(user , phone, token);
+				}
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
+
 	}
 }
