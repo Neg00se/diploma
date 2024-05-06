@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../regimages/logo.png";
 import banner from "../regimages/regbanner.jpeg";
 import "./regmaincontent.css";
+import { useRegisterMutation } from "../../features/registration/registerApiSlice";
+import validator from "validator";
 
 export default function RegMainContent() {
   const [contractNumber, setContractNumber] = useState(""); // Состояние для номера договора
@@ -10,13 +12,42 @@ export default function RegMainContent() {
   const [error, setError] = useState(""); // Состояние для ошибки
   const [isRegistered, setIsRegistered] = useState(false); // Состояние для отображения благодарности за регистрацию
 
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [register, { isLoading, isSuccess }] = useRegisterMutation();
+
+  const navigate = useNavigate();
+
+  const validate = (value) => {
+    setPwd(value);
+    if (
+      validator.isStrongPassword(value, {
+        minLength: 6,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      setError("");
+    } else {
+      setError(
+        "Пароль повинен бути довжиною щонайменше 6 символів , складатися з літер латинського алфавіту , мати мінімум 1 велику літеру , 1 маленьку літеру, 1 цифру та 1 символ "
+      );
+    }
+  };
+
   const handleContractNumberChange = (e) => {
     setContractNumber(e.target.value);
     setError(""); // Сбрасываем ошибку при изменении номера договора
   };
 
   const handleCheckboxChange = (e) => {
-    setIsChecked(e.target.checked);
+    setIsChecked(!isChecked);
     setError(""); // Сбрасываем ошибку при изменении состояния чекбокса
   };
 
@@ -30,14 +61,53 @@ export default function RegMainContent() {
     } else if (!isChecked) {
       setError("Дайте згоду на обробку персональних даних");
     } else {
-      setIsRegistered(true);
+      setIsRegistered(!isRegistered);
       inputValue.value = ""; // Устанавливаем состояние, что пользователь зарегистрирован
     }
   };
   const inputValue = document.querySelector("input");
+
+  const handleReg = async (e) => {
+    e.preventDefault();
+    try {
+      await register({
+        firstName: name,
+        lastName: surname,
+        personalCode: contractNumber,
+        address: address,
+        phone,
+        email,
+        password: pwd,
+      });
+
+      setAddress("");
+      setName("");
+      setSurname("");
+      setPhone("");
+      setEmail("");
+      setPwd("");
+      navigate("/login");
+    } catch (err) {
+      if (!err?.response) {
+        setError("No server response");
+      } else if (err?.response.status == 400) {
+        setError("Якісь з необхідних для реєстрації даних відсутні");
+      } else if (err?.response?.status === 401) {
+        setError("Wrong credentials");
+      }
+    }
+  };
+
+  const handleNameInput = (e) => setName(e.target.value);
+  const handleSurnameInput = (e) => setSurname(e.target.value);
+  const handlePhoneInput = (e) => setPhone(e.target.value);
+  const handleEmailInput = (e) => setEmail(e.target.value);
+  const handlePwdInput = (e) => setPwd(e.target.value);
+  const handleAddressInput = (e) => setAddress(e.target.value);
+
   return (
     <div className="login-container">
-      <div className="left-section">
+      <div className=" h-100 left-section">
         <div className="header">
           <div className="logo-header">
             <Link to="/">
@@ -60,6 +130,7 @@ export default function RegMainContent() {
               Введіть номер вашого особового рахунка
             </p>
             <input
+              className="inputField"
               type="text"
               placeholder=""
               value={contractNumber}
@@ -85,18 +156,64 @@ export default function RegMainContent() {
             </button>
           </form>
         ) : (
-          <form className="login-form">
-            <h2 className="login-title">Створіть Логін та пароль</h2>
-            <p className="login-input-hint">Ваш номер телефону або e-mail</p>
-            <input type="text" placeholder="Логін"/>
+          <form onSubmit={handleReg} className="login-form">
+            <h2 className="login-title">Введіть ваші дані</h2>
+            {error && <p className="error-message">{error}</p>}{" "}
+            <p className="login-input-hint">ім'я</p>
+            <input
+              className="inputField"
+              value={name}
+              onChange={handleNameInput}
+              required
+              type="text"
+              placeholder="Ім'я"
+            />
+            <p className="login-input-hint">Прізвище</p>
+            <input
+              className="inputField"
+              value={surname}
+              onChange={handleSurnameInput}
+              required
+              type="text"
+              placeholder="Прізвище"
+            />
+            <p className="login-input-hint">Ваш номер телефону</p>
+            <input
+              className="inputField"
+              value={phone}
+              onChange={handlePhoneInput}
+              required
+              type="tel"
+              placeholder="Телефон"
+            />
+            <p className="login-input-hint">Ваш номер e-mail</p>
+            <input
+              className="inputField"
+              value={email}
+              onChange={handleEmailInput}
+              required
+              type="email"
+              placeholder="email"
+            />
+            <p className="login-input-hint">Ваша адреса</p>
+            <input
+              className="inputField"
+              value={address}
+              onChange={handleAddressInput}
+              type="text"
+              placeholder="адреса"
+            />
             <p className="login-input-hint">Створіть надійний пароль</p>
-            <input type="password" placeholder="Пароль" />
-
-				<Link to="/">
+            <input
+              value={pwd}
+              onChange={(e) => validate(e.target.value)}
+              required
+              type="password"
+              placeholder="Пароль"
+            />
             <button type="submit" className="login-button">
               Зареєструватись
             </button>
-				</Link>
           </form>
         )}
       </div>
