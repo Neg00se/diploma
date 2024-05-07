@@ -45,11 +45,14 @@ public class CommunalPaymentService : ICommunalPaymentService
 
 	public async Task AddAsync(UserIndicatorsModel model, User user)
 	{
-		if (model.StartDate.Year < DateTime.Now.Year)
+		if (model.StartDate.Year + 1 < DateTime.Now.Year)
 		{
 			throw new GasAppException("invalid year");
 		}
-
+		if(model.GasUsed <= 0)
+		{
+			throw new GasAppException("invalid gas amount used");
+		}
 
 		var payment = _mapper.Map<CommunalPayment>(model);
 

@@ -41,7 +41,7 @@ const LoginMainContent = () => {
     } catch (err) {
       if (!err?.status) {
         setErrMsg("No server response");
-      } else if (err?.status == 400) {
+      } else if (err?.status === 400) {
         setErrMsg("Missing username or password");
       } else if (err?.status === 401) {
         setErrMsg("Wrong credentials");
